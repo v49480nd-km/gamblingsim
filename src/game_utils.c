@@ -1,7 +1,7 @@
 #include <stdlib.h>
 #include <time.h>
 
-#include "game.h"
+#include "game_utils.h"
 
 float getParlayWinPercentage(int* user_guesses) {
     //

@@ -3,6 +3,11 @@
 
 #define DIE_SIDES 20
 
+typedef struct Player {
+    int coins;
+    int bet_amount;
+} Player;
+
 float getParlayWinPercentage(int* user_guesses);
 float getWinPercentage(int user_guess);
 int rollDie();

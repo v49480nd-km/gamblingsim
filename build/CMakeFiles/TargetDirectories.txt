@@ -1,0 +1,3 @@
+C:/Users/fool1/Code/GamblingSimulator/build/CMakeFiles/GamblingSimulator.dir
+C:/Users/fool1/Code/GamblingSimulator/build/CMakeFiles/edit_cache.dir
+C:/Users/fool1/Code/GamblingSimulator/build/CMakeFiles/rebuild_cache.dir

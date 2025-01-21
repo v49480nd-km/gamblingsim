@@ -135,6 +135,30 @@ GamblingSimulator/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles\GamblingSimulator.dir\build.make CMakeFiles/GamblingSimulator.dir/build
 .PHONY : GamblingSimulator/fast
 
+game.obj: game.c.obj
+.PHONY : game.obj
+
+# target to build an object file
+game.c.obj:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GamblingSimulator.dir\build.make CMakeFiles/GamblingSimulator.dir/game.c.obj
+.PHONY : game.c.obj
+
+game.i: game.c.i
+.PHONY : game.i
+
+# target to preprocess a source file
+game.c.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GamblingSimulator.dir\build.make CMakeFiles/GamblingSimulator.dir/game.c.i
+.PHONY : game.c.i
+
+game.s: game.c.s
+.PHONY : game.s
+
+# target to generate assembly for a file
+game.c.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles\GamblingSimulator.dir\build.make CMakeFiles/GamblingSimulator.dir/game.c.s
+.PHONY : game.c.s
+
 main.obj: main.c.obj
 .PHONY : main.obj
 
@@ -169,6 +193,9 @@ help:
 	@echo ... edit_cache
 	@echo ... rebuild_cache
 	@echo ... GamblingSimulator
+	@echo ... game.obj
+	@echo ... game.i
+	@echo ... game.s
 	@echo ... main.obj
 	@echo ... main.i
 	@echo ... main.s

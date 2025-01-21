@@ -8,4 +8,5 @@ set(CMAKE_C_STANDARD_REQUIRED ON)
 project(GamblingSimulator)
 add_executable(${PROJECT_NAME}
     main.c
+    game.c
 )

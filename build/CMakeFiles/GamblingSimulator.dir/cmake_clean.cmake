@@ -1,4 +1,6 @@
 file(REMOVE_RECURSE
+  "CMakeFiles/GamblingSimulator.dir/game.c.obj"
+  "CMakeFiles/GamblingSimulator.dir/game.c.obj.d"
   "CMakeFiles/GamblingSimulator.dir/main.c.obj"
   "CMakeFiles/GamblingSimulator.dir/main.c.obj.d"
   "GamblingSimulator.exe"

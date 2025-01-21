@@ -9,12 +9,14 @@ struct Player {
 };
 
 double getWinPercentage(unsigned int);
-int flipCoin(void);
+int flipCoin(void); // to be used in generateFlips()
 // figure out types later
+void game(void);
+void generateFlips(int*, const int);
 void getBetAmount(struct Player*);
+void getGuesses(int*, const int);
 void getNumFlips(struct Player*); // TESTED
 void placeBet(int);
 void setNumFlips(void);
-void game(void);
 
 #endif

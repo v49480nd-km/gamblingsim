@@ -20,6 +20,12 @@ int flipCoin(void) {
     return side_flipped;
 }
 
+void generateFlips(int* flipNums, const int num_of_flips) {
+    for (int i = 0; i < num_of_flips; i++) {
+        *flipNums[i] = flipCoin();
+    }
+}
+
 void getBetAmount(struct Player* player) {
     unsigned int desired_amount;
 
@@ -33,6 +39,13 @@ void getBetAmount(struct Player* player) {
     }
 
     player->bet_amount = desired_amount;
+}
+
+void getGuesses(int* guessNums, const int num_of_flips) {
+    for (int i = 0; i < num_of_flips; i++) {
+        printf("Enter Guess [%d]", i+1);
+        scanf("%d", guessNums[i]);
+    }
 }
 
 void getNumFlips(struct Player* player) { // TESTED
@@ -52,20 +65,27 @@ void getNumFlips(struct Player* player) { // TESTED
 }
 
 void game(void) {
+    int* flipNums;
+    int* guessNums;
     struct Player* player = malloc(sizeof(struct Player));
     player->coins = 500;
     player->bet_amount = 10; // obviously set by player each round
 
     while (player->coins > 0) {
         getNumFlips(player);
-        // for num of die ask bet amount and bet number
+
+        flipNums = (int*)malloc(player->num_of_flips * sizeof(int));
+        guessNums = (int*)malloc(player->num_of_flips * sizeof(int));
+
+        generateFlips(flipNums, player->num_of_flips);
+        getGuesses(guessNums, player->num_of_flips);
         printf(
-            "Coins: %d\n"
-            "Bet Amount: %d\n"
-            "BET_NUMBER: %d\n"
-            "Num of Flips: %d\n",
-            player->coins, player->bet_amount, player->bet_number, player->num_of_flips
+            "Coins: %d\n" "Bet Amount: %d\n"
+            "BET_NUMBER: %d\n" "Num of Flips: %d\n",
+            player->coins, player->bet_amount,
+            player->bet_number, player->num_of_flips
         );
+
         break;
     }
 }

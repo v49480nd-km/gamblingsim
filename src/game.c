@@ -15,27 +15,27 @@ int flipCoin(void) {
 
     srand(time(NULL));
 
-    number_rolled = rand() % 2;
+    side_flipped = rand() % 2;
 
     return side_flipped;
 }
 
-void getBetAmount(Player* player) {
+void getBetAmount(struct Player* player) {
     unsigned int desired_amount;
 
     printf("Input bet amount: ");
     scanf("%u", &desired_amount);
 
-    if (desired_amount > Player->coins) {
-        desired_amount = Player->coins;
+    if (desired_amount > player->coins) {
+        desired_amount = player->coins;
     } else if (desired_amount <= 0) {
         desired_amount = 1;
     }
 
-    Player->bet_amount = desired_amount;
+    player->bet_amount = desired_amount;
 }
 
-void getNumFlips(Player* player) {
+void getNumFlips(struct Player* player) { // TESTED
     unsigned int num_chose; // starts at zero to start switch case 
     unsigned int loop_count = 0;
 
@@ -48,16 +48,24 @@ void getNumFlips(Player* player) {
             player->num_of_flips = num_chose;
             break;
         }
-    } while (1 || loop_count < 11); // keep trying for 10 times
+    } while (loop_count < 10); // keep trying for 10 times
 }
 
 void game(void) {
-    Player Player;
-    Player.coins = 500;
-    Player.bet_amount = 10; // obviously set by player each round
+    struct Player* player = malloc(sizeof(struct Player));
+    player->coins = 500;
+    player->bet_amount = 10; // obviously set by player each round
 
-    while (Player.coins > 0) {
-        getNumDie(Player);
+    while (player->coins > 0) {
+        getNumFlips(player);
         // for num of die ask bet amount and bet number
+        printf(
+            "Coins: %d\n"
+            "Bet Amount: %d\n"
+            "BET_NUMBER: %d\n"
+            "Num of Flips: %d\n",
+            player->coins, player->bet_amount, player->bet_number, player->num_of_flips
+        );
+        break;
     }
 }

@@ -1,14 +1,22 @@
 #ifndef GAME_H
 #define GAME_H
 
-#define DIE_SIDES 20
+struct Player {
+    int coins;
+    unsigned int bet_amount;
+    unsigned int bet_number;
+    unsigned int num_of_flips;
+};
 
-float getParlayWinPercentage(int* user_guesses);
-float getWinPercentage(int user_guess);
-int rollDie();
-
+double getWinPercentage(unsigned int);
+int flipCoin(void); // to be used in generateFlips()
 // figure out types later
-void setNumDie(void);
-void placeBet(int user_guess);
+void game(void);
+void generateFlips(int*, const int);
+void getBetAmount(struct Player*);
+void getGuesses(int*, const int);
+void getNumFlips(struct Player*); // TESTED
+void placeBet(int);
+void setNumFlips(void);
 
 #endif

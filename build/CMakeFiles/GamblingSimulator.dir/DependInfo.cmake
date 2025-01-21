@@ -8,6 +8,7 @@ set(CMAKE_DEPENDS_LANGUAGES
 
 # The set of dependency files which are needed:
 set(CMAKE_DEPENDS_DEPENDENCY_FILES
+  "C:/Users/fool1/Code/GamblingSimulator/src/game.c" "CMakeFiles/GamblingSimulator.dir/game.c.obj" "gcc" "CMakeFiles/GamblingSimulator.dir/game.c.obj.d"
   "C:/Users/fool1/Code/GamblingSimulator/src/main.c" "CMakeFiles/GamblingSimulator.dir/main.c.obj" "gcc" "CMakeFiles/GamblingSimulator.dir/main.c.obj.d"
   )
 

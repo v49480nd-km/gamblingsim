@@ -1,3 +1,12 @@
+/*
+  _____          __  __ ____  _      _____ _   _  _____    _____ _____ __  __ _    _ _            _______ ____  _____  
+ / ____|   /\   |  \/  |  _ \| |    |_   _| \ | |/ ____|  / ____|_   _|  \/  | |  | | |        /\|__   __/ __ \|  __ \ 
+| |  __   /  \  | \  / | |_) | |      | | |  \| | |  __  | (___   | | | \  / | |  | | |       /  \  | | | |  | | |__) |
+| | |_ | / /\ \ | |\/| |  _ <| |      | | | . ` | | |_ |  \___ \  | | | |\/| | |  | | |      / /\ \ | | | |  | |  _  / 
+| |__| |/ ____ \| |  | | |_) | |____ _| |_| |\  | |__| |  ____) |_| |_| |  | | |__| | |____ / ____ \| | | |__| | | \ \ 
+\_____/_/    \_\_|  |_|____/|______|_____|_| \_|\_____| |_____/|_____|_|  |_|\____/|______/_/    \_\_|  \____/|_|  \_\
+*/
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <math.h>
@@ -5,9 +14,8 @@
 
 #include "game.h"
 
-double getWinPercentage(unsigned int num_of_flips) {
-    double win_percentage = pow((double)0.5, (double)num_of_flips);
-    return win_percentage;
+double getWinPercentage(int num_of_flips) {
+    return pow((double)0.5, (double)num_of_flips);
 }
 
 int flipCoin(void) {
@@ -22,15 +30,13 @@ int flipCoin(void) {
 
 void generateFlips(int* flipNums, const int num_of_flips) {
     for (int i = 0; i < num_of_flips; i++) {
-        *flipNums[i] = flipCoin();
+        flipNums[i] = flipCoin();
     }
 }
 
 void getBetAmount(struct Player* player) {
-    unsigned int desired_amount;
-
     printf("Input bet amount: ");
-    scanf("%u", &desired_amount);
+    scanf("%d", &desired_amount);
 
     if (desired_amount > player->coins) {
         desired_amount = player->coins;
@@ -48,42 +54,39 @@ void getGuesses(int* guessNums, const int num_of_flips) {
     }
 }
 
-void getNumFlips(struct Player* player) { // TESTED
-    unsigned int num_chose; // starts at zero to start switch case 
-    unsigned int loop_count = 0;
-
-    do {
-        loop_count++;
-        printf("Number of die (1, 5, 10): ");
-        scanf("%u", &num_chose);
-
-        if (num_chose == 1 || num_chose == 5 || num_chose == 10) {
-            player->num_of_flips = num_chose;
-            break;
-        }
-    } while (loop_count < 10); // keep trying for 10 times
-}
-
 void game(void) {
+    int numFlips;
     int* flipNums;
     int* guessNums;
     struct Player* player = malloc(sizeof(struct Player));
-    player->coins = 500;
+    player->coins = STARTING_AMOUNT;
     player->bet_amount = 10; // obviously set by player each round
 
     while (player->coins > 0) {
-        getNumFlips(player);
+        int loop_count = 0;
+        int num_flips;
 
-        flipNums = (int*)malloc(player->num_of_flips * sizeof(int));
-        guessNums = (int*)malloc(player->num_of_flips * sizeof(int));
+        do {
+            loop_count++;
+            printf("Number of die (1, 5, 10): ");
+            scanf("%d", &num_flips);
 
-        generateFlips(flipNums, player->num_of_flips);
-        getGuesses(guessNums, player->num_of_flips);
+            if (num_flips == 1 || num_flips == 5 || num_flips == 10) {
+                break;
+            }
+        } while (loop_count < 10); // keep trying for 10 times
+
+        flipNums = (int*)malloc(num_flips * sizeof(int));
+        guessNums = (int*)malloc(num_flips * sizeof(int));
+
+        printf("Num flips: %d\n", num_flips);
+        generateFlips(flipNums, num_flips);
+        getGuesses(guessNums, num_flips);
         printf(
             "Coins: %d\n" "Bet Amount: %d\n"
-            "BET_NUMBER: %d\n" "Num of Flips: %d\n",
+            "BET_NUMBER: %d\n",
             player->coins, player->bet_amount,
-            player->bet_number, player->num_of_flips
+            player->bet_number
         );
 
         break;
